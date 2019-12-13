@@ -1,4 +1,4 @@
-package io.github.ecsoya.network;
+package io.github.ecsoya.demo.network;
 
 public class NetworkBuilderException extends Exception {
 
