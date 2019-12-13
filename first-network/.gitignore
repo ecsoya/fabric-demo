@@ -7,3 +7,4 @@
 /channel-artifacts/*.json
 /org3-artifacts/crypto-config/*
 /.env
+/crypto-config/
