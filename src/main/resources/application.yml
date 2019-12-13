@@ -1,0 +1,28 @@
+spring:
+   mvc:
+      locale: zh_CN
+      locale-resolver: fixed
+   fabric:
+      chaincode: 
+         identify: common
+         name: Common Chaincode
+         version: 1.0
+      channel: mychannel
+      peers: 2
+      organizations:
+      - Org1
+      - Org2
+      name: Common Fabric Network
+      gateway:
+         wallet:
+            identify: admin
+      network:
+         file: network/connection.yml
+         name: example-fabric
+# Fabric explorer
+      explorer: 
+         title: Fabric Explorer
+#         logo: img/logo.png
+         copyright: Ecsoya (jin.liu@soyatec.com)
+         hyperledger-explorer-url: http://www.hyperleder.org
+         path: /fabric
