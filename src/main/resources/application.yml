@@ -3,7 +3,7 @@ spring:
       locale: zh_CN
       locale-resolver: fixed
    fabric:
-      chaincode: 
+      chaincode:
          identify: mycc
          name: Common Chaincode
          version: 1.0
@@ -14,13 +14,14 @@ spring:
       - Org2
       name: Common Fabric Network
       gateway:
+         commit-timeout: 30
          wallet:
             identify: admin
       network:
          file: network/connection-Org1.yml
          name: example-fabric
 # Fabric explorer
-      explorer: 
+      explorer:
          title: Fabric Explorer
 #         logo: img/logo.png
          copyright: Ecsoya (jin.liu@soyatec.com)

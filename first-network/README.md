@@ -5,6 +5,11 @@ The directions for using this are documented in the Hyperledger Fabric
 
 *NOTE:* After navigating to the documentation, choose the documentation version that matches your version of Fabric
 
+### 运行
+
+```
+./byfn.sh up -a -s couchdb
+```
 
 ### 修改
 
