@@ -1,0 +1,6 @@
+*.sh linguist-language=Java
+*.yaml linguist-language=Java
+*.yml linguist-language=Java
+*.css linguist-language=Java
+*.js linguist-language=Java
+*.html linguist-language=Java
