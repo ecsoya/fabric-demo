@@ -571,7 +571,7 @@ public class NetworkBuilder {
 		cryptoStore.addProperty("path", "tmp/hfc-cvs");
 		credentialStore.add("cryptoStore", cryptoStore);
 
-		credentialStore.addProperty("wallet", "bts");
+		credentialStore.addProperty("wallet", "admin");
 		client.add("credentialStore", credentialStore);
 		return client;
 	}

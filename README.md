@@ -1,4 +1,8 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ecsoya/spring-fabric-gateway/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.ecsoya/spring-fabric-gateway)
+
 ##Spring Fabric Demo
+
+Online demo [http://106.13.229.136/](http://106.13.229.136/)
 
 ### 1. Build Fabric Network
 

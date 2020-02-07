@@ -1,3 +1,6 @@
+server:
+   servlet:
+      context-path: /
 spring:
    mvc:
       locale: zh_CN
@@ -16,7 +19,7 @@ spring:
       gateway:
          commit-timeout: 30
          wallet:
-            identify: admin
+            identity: admin
       network:
          file: network/connection-Org1.yml
          name: example-fabric

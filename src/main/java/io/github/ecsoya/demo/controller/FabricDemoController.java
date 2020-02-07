@@ -3,7 +3,7 @@ package io.github.ecsoya.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,15 +11,15 @@ import io.github.ecsoya.fabric.FabricPagination;
 import io.github.ecsoya.fabric.FabricPaginationQuery;
 import io.github.ecsoya.fabric.FabricResponse;
 import io.github.ecsoya.fabric.bean.FabricObject;
-import io.github.ecsoya.fabric.service.IFabricService;
+import io.github.ecsoya.fabric.service.IFabricObjectService;
 
 @RestController
 public class FabricDemoController {
 
 	@Autowired
-	private IFabricService fabricService;
+	private IFabricObjectService fabricService;
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("baseURL", baseUrl(request));
@@ -34,22 +34,22 @@ public class FabricDemoController {
 		return scheme + "://" + serverName + ":" + port + path;
 	}
 
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	public FabricPagination<FabricObject> list(FabricPaginationQuery<FabricObject> query) {
 		return fabricService.pagination(query);
 	}
 
-	@RequestMapping("/add")
+	@GetMapping("/add")
 	public FabricResponse add(FabricObject object) {
 		return fabricService.create(object);
 	}
 
-	@RequestMapping("/update")
+	@GetMapping("/update")
 	public FabricResponse update(FabricObject object) {
 		return fabricService.update(object);
 	}
 
-	@RequestMapping("/remove")
+	@GetMapping("/remove")
 	public FabricResponse remove(FabricObject object) {
 		return fabricService.delete(object.getId(), object.getType());
 	}

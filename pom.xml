@@ -8,10 +8,10 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	
+
 	<groupId>io.github.ecsoya</groupId>
 	<artifactId>fabric-demo</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.6-SNAPSHOT-SNAPSHOT</version>
 	<name>fabric-demo</name>
 	<description>Spring Fabric Demo</description>
 
@@ -25,28 +25,67 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+
 		</dependency>
 		<dependency>
 			<groupId>io.github.ecsoya</groupId>
 			<artifactId>fabric-explorer-spring-boot-starter</artifactId>
-			<version>1.0.4</version>
-		</dependency>
+			<version>1.0.6-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
 
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate.validator</groupId>
+					<artifactId>hibernate-validator</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.databene</groupId>
+			<artifactId>contiperf</artifactId>
+			<version>2.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
+		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>io.github.ecsoya.demo.DemoApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>
