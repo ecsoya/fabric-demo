@@ -11,7 +11,7 @@
 
 	<groupId>io.github.ecsoya</groupId>
 	<artifactId>fabric-demo</artifactId>
-	<version>1.0.6-SNAPSHOT-SNAPSHOT</version>
+	<version>1.0.6</version>
 	<name>fabric-demo</name>
 	<description>Spring Fabric Demo</description>
 
@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>io.github.ecsoya</groupId>
 			<artifactId>fabric-explorer-spring-boot-starter</artifactId>
-			<version>1.0.6-SNAPSHOT</version>
+			<version>1.0.6</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.validation</groupId>
