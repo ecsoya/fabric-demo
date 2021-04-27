@@ -22,11 +22,11 @@ public class NetworkGenerator {
 			try {
 
 				JsonObject json = new NetworkBuilder(domain).name("demo-fabric-network").clientOrg(clients[i])
-						.ordererOrg("orderer").orderers("orderer").peerOrgs(clients).peers("peer0", "peer1")
-						.channels("mychannel").root(new File(root, "first-network/crypto-config"))
-						.url("Org1", "*", "106.13.229.136").url("Org2", "*", "106.13.229.136")
-						.url("orderer", "*", "106.13.229.136").port("Org1", "peer0", 7051).port("Org1", "peer1", 8051)
-						.port("Org2", "peer0", 9051).port("Org2", "peer1", 10051).build();
+						.ordererOrg("orderer").orderers("orderer").peerOrgs(clients).peers("peer0")
+						.channels("mychannel").root(new File("/Users/Ecsoya/Git/fabric-test-network", "organizations"))
+						.url("Org1", "*", "49.232.22.181").url("Org2", "*", "49.232.22.181")
+						.url("orderer", "*", "49.232.22.181").port("Org1", "peer0", 7051).port("Org2", "peer0", 9051)
+						.build();
 
 				Gson gson = new Gson();
 				String value = gson.toJson(json);

@@ -1,5 +1,6 @@
 server:
    servlet:
+      port: 8081
       context-path: /
 spring:
    mvc:
@@ -21,7 +22,7 @@ spring:
          wallet:
             identity: admin
       network:
-         file: network/connection-Org1.yml
+         file: network/connection-org1.yml
          name: example-fabric
 # Fabric explorer
       explorer:

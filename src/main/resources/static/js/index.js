@@ -16,7 +16,8 @@ $(function() {
 									bookmark : bookmarkMap[currentPage],
 									pageSize : pageSize,
 									currentPage : currentPage,
-									type : $('#type').val()
+									type : $('#type').val(),
+									value: $('#value').val()
 								}
 							}).then(function success(res) {
 								bookmarkMap[currentPage + 1] = res.bookmark;
@@ -163,6 +164,9 @@ $(function() {
 
 	$('#refresh').click(function() {
 		refreshDataTable();
+	});
+	$('#search').click(function() {
+		refreshDataTable(true);
 	});
 
 	function refreshDataTable(force) {

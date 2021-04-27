@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonObject;
+
 import io.github.ecsoya.fabric.FabricPagination;
 import io.github.ecsoya.fabric.FabricPaginationQuery;
 import io.github.ecsoya.fabric.FabricResponse;
@@ -35,7 +37,12 @@ public class FabricDemoController {
 	}
 
 	@GetMapping("/list")
-	public FabricPagination<FabricObject> list(FabricPaginationQuery<FabricObject> query) {
+	public FabricPagination<FabricObject> list(FabricPaginationQuery<FabricObject> query, String value) {
+		if (value != null && !value.equals("")) {
+			JsonObject json = new JsonObject();
+			json.addProperty("value", value);
+			query.equals("values", json);
+		}
 		return fabricService.pagination(query);
 	}
 

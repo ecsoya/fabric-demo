@@ -5,19 +5,20 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.2.RELEASE</version>
+		<version>2.4.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>io.github.ecsoya</groupId>
 	<artifactId>fabric-demo</artifactId>
-	<version>1.0.6</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<name>fabric-demo</name>
 	<description>Spring Fabric Demo</description>
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<spring.fabric.gateway.version>2.0.0-SNAPSHOT</spring.fabric.gateway.version>
 	</properties>
 
 
@@ -30,7 +31,7 @@
 		<dependency>
 			<groupId>io.github.ecsoya</groupId>
 			<artifactId>fabric-explorer-spring-boot-starter</artifactId>
-			<version>1.0.6</version>
+			<version>${spring.fabric.gateway.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.validation</groupId>
@@ -75,7 +76,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>ROOT</finalName>
+		<finalName>fabric-demo</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -87,5 +88,4 @@
 		</plugins>
 	</build>
 
-	<packaging>war</packaging>
 </project>

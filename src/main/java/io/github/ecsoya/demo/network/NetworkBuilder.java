@@ -175,7 +175,7 @@ public class NetworkBuilder {
 
 		for (String org : peerOrgs) {
 			JsonObject node = buildCertificateAuthorityNode(org);
-			root.add("ca." + org + "." + domain, node);
+			root.add("ca." + org.toLowerCase() + "." + domain, node);
 		}
 
 		return root;
@@ -187,10 +187,10 @@ public class NetworkBuilder {
 		node.addProperty("url", "https://" + getUrl(org, null) + ":7054");
 
 		JsonObject grpcOptions = new JsonObject();
-		grpcOptions.addProperty("ssl-target-name-override", "ca." + org + "." + domain);
+		grpcOptions.addProperty("ssl-target-name-override", "ca." + org.toLowerCase() + "." + domain);
 		grpcOptions.addProperty("allow-insecure", 0);
 		grpcOptions.addProperty("trustServerCertificate", true);
-		grpcOptions.addProperty("hostnameOverride", "ca." + org + "." + domain);
+		grpcOptions.addProperty("hostnameOverride", "ca." + org.toLowerCase() + "." + domain);
 		node.add("grpcOptions", grpcOptions);
 
 		JsonObject httpOptions = new JsonObject();
@@ -250,7 +250,7 @@ public class NetworkBuilder {
 
 		for (String o : peerOrgs) {
 			for (String p : peers) {
-				String name = p + "." + o + "." + domain;
+				String name = p + "." + o.toLowerCase() + "." + domain;
 				JsonObject node = new JsonObject();
 				node.addProperty("url", "grpcs://" + getUrl(o, "*") + ":" + getPort(o, p, 7051));
 //				node.addProperty("eventUrl", "grpcs://" + getUrl(o, "*") + ":" + getPort("*", "event_" + p, 7053));
@@ -292,7 +292,7 @@ public class NetworkBuilder {
 //			tlsCACerts.addProperty("path", getOrdererCertPath(org));
 			tlsCACerts.addProperty("pem", getOrdererCertPem(org));
 			orgNode.add("tlsCACerts", tlsCACerts);
-			node.add(org + "." + domain, orgNode);
+			node.add(org.toLowerCase() + "." + domain, orgNode);
 		}
 		return node;
 	}
@@ -314,7 +314,7 @@ public class NetworkBuilder {
 		ordererOrgNode.addProperty("mspid", org + "MSP");
 
 		JsonArray certificateAuthorities = new JsonArray();
-		certificateAuthorities.add("ca." + org + "." + domain);
+		certificateAuthorities.add("ca." + org.toLowerCase() + "." + domain);
 		ordererOrgNode.add("certificateAuthorities", certificateAuthorities);
 
 		JsonObject adminPrivateKey = new JsonObject();
@@ -329,7 +329,7 @@ public class NetworkBuilder {
 		if (numOfPeers > 0) {
 			JsonArray peers = new JsonArray();
 			for (int i = 0; i < numOfPeers; i++) {
-				peers.add("peer" + i + "." + org + "." + domain);
+				peers.add("peer" + i + "." + org.toLowerCase() + "." + domain);
 			}
 			ordererOrgNode.add("peers", peers);
 		}
@@ -338,13 +338,13 @@ public class NetworkBuilder {
 
 	private String getCaCertPath(String org) throws NetworkBuilderException {
 		File file = new File(root,
-				"peerOrganizations/" + org + "." + domain + "/ca/ca." + org + "." + domain + "-cert.pem");
+				"peerOrganizations/" + org + "." + domain + "/ca/ca." + org.toLowerCase() + "." + domain + "-cert.pem");
 		return getRelativePath(file);
 	}
 
 	private String getCaCertPem(String org) throws NetworkBuilderException {
 		File file = new File(root,
-				"peerOrganizations/" + org + "." + domain + "/ca/ca." + org + "." + domain + "-cert.pem");
+				"peerOrganizations/" + org + "." + domain + "/ca/ca." + org.toLowerCase() + "." + domain + "-cert.pem");
 		try {
 			return new String(Files.readAllBytes(file.toPath()));
 		} catch (IOException e) {
@@ -376,8 +376,8 @@ public class NetworkBuilder {
 	}
 
 	private String getPeerCertPem(String org, String peer) throws NetworkBuilderException {
-		File file = new File(root, "peerOrganizations/" + org + "." + domain + "/peers/" + peer + "." + org + "."
-				+ domain + "/msp/tlscacerts/tlsca." + org + "." + domain + "-cert.pem");
+		File file = new File(root, "peerOrganizations/" + org.toLowerCase() + "." + domain + "/peers/" + peer + "."
+				+ org + "." + domain + "/msp/tlscacerts/tlsca." + org.toLowerCase() + "." + domain + "-cert.pem");
 		try {
 			return new String(Files.readAllBytes(file.toPath()));
 		} catch (IOException e) {
@@ -497,7 +497,7 @@ public class NetworkBuilder {
 			JsonArray orderers = new JsonArray();
 //			orderers.add(ordererOrg + "." + domain);
 			for (String org : this.orderers) {
-				orderers.add(org + "." + domain);
+				orderers.add(org.toLowerCase() + "." + domain);
 			}
 			node.add("orderers", orderers);
 
@@ -518,7 +518,7 @@ public class NetworkBuilder {
 						o.addProperty("ledgerQuery", true);
 						o.addProperty("eventSource", false);
 					}
-					peersNode.add(peer + "." + org + "." + domain, o);
+					peersNode.add(peer + "." + org.toLowerCase() + "." + domain, o);
 				}
 
 			}

@@ -1,16 +1,29 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ecsoya/spring-fabric-gateway/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.ecsoya/spring-fabric-gateway)
 
+This demo is working on Hyperledger Fabric v2.3.2 now.
+
+[[bootstrap.sh]](https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh)
+
+`./bootstrap.sh 2.3.2 1.5.0 -s`
+
+If you still use Fabric 1.4.x network, please check out branch 1.0.6.
+
 ##Spring Fabric Demo
 
-Online demo [http://106.13.229.136/](http://106.13.229.136/)
 
 ### 1. Build Fabric Network
 
-open Terminal and go to `first-network` folder.
+open Terminal and go to `test-network` folder.
 
 then run command:
 
-`./byfn.sh up -a -s couchdb`
+i. Build Network with channel
+
+`./network.sh up createChannel -c mychannel -s couchdb`
+
+ii. Deploy chaincode 
+
+`./network.sh deployCC -ccn mycc -ccv 1.0 -ccp ../src/chaincode/common -ccl go`
 
 ### 2. Generate Fabric Network Config files.
 
@@ -18,11 +31,11 @@ Run `io.github.ecsoya.demo.network.NetworkGenerator` in `src/main/test` folder.
 
 you will get 2 network config files in `src/main/resources/network` folder 
 
-`connection-Org1.yml`
+`connection-org1.yml`
 
 and
 
-`connection-Org2.yml`
+`connection-org2.yml`
 
 ### 3. Configure `application.yml`
 
@@ -46,7 +59,7 @@ spring:
          wallet:
             identify: admin
       network:
-         file: network/connection-Org1.yml
+         file: network/connection-org1.yml
          name: example-fabric
 # Fabric explorer
       explorer: 
