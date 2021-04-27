@@ -1,0 +1,133 @@
+name: demo-fabric-network
+version: 1.0.0
+x-type: hlfv1
+client:
+  logging:
+    level: debug
+  connection:
+    timeout:
+      peer:
+        endorser: 30000
+        eventHub: 30000
+        eventReg: 30000
+      orderer: 30000
+  organization: Org2
+  credentialStore:
+    path: tmp/hfc-kvs
+    cryptoStore:
+      path: tmp/hfc-cvs
+    wallet: admin
+channels:
+  mychannel:
+    orderers:
+    - orderer.example.com
+    peers:
+      peer0.org1.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.org2.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+    policies: {
+      }
+organizations:
+  Org1:
+    mspid: Org1MSP
+    certificateAuthorities:
+    - ca.org1.example.com
+    adminPrivateKey:
+      pem: |
+        -----BEGIN PRIVATE KEY-----
+        -----END PRIVATE KEY-----
+    signedCert:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+    peers:
+    - peer0.org1.example.com
+  Org2:
+    mspid: Org2MSP
+    certificateAuthorities:
+    - ca.org2.example.com
+    adminPrivateKey:
+      pem: |
+        -----BEGIN PRIVATE KEY-----
+        -----END PRIVATE KEY-----
+    signedCert:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+    peers:
+    - peer0.org2.example.com
+orderers:
+  orderer.example.com:
+    url: grpcs://49.232.22.181:7050
+    grpcOptions:
+      grpc-max-send-message-length: 15
+      grpc.keepalive_time_ms: 360000
+      grpc.keepalive_timeout_ms: 180000
+      hostnameOverride: orderer.example.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+peers:
+  peer0.org1.example.com:
+    url: grpcs://49.232.22.181:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      grpc.http2.keepalive_time: 15
+      request-timeout: 120001
+      hostnameOverride: peer0.org1.example.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+  peer0.org2.example.com:
+    url: grpcs://49.232.22.181:9051
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.example.com
+      grpc.http2.keepalive_time: 15
+      request-timeout: 120001
+      hostnameOverride: peer0.org2.example.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+certificateAuthorities:
+  ca.org1.example.com:
+    url: https://49.232.22.181:7054
+    grpcOptions:
+      ssl-target-name-override: ca.org1.example.com
+      allow-insecure: 0
+      trustServerCertificate: true
+      hostnameOverride: ca.org1.example.com
+    httpOptions:
+      verify: false
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+  ca.org2.example.com:
+    url: https://49.232.22.181:7054
+    grpcOptions:
+      ssl-target-name-override: ca.org2.example.com
+      allow-insecure: 0
+      trustServerCertificate: true
+      hostnameOverride: ca.org2.example.com
+    httpOptions:
+      verify: false
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----

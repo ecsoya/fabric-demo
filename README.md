@@ -1,6 +1,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ecsoya/spring-fabric-gateway/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.ecsoya/spring-fabric-gateway)
 
-This demo is working on Hyperledger Fabric v2.3.2 now.
+This demo is updated by using Hyperledger Fabric [v2.3.2](https://hyperledger-fabric.readthedocs.io/en/release-2.3/whatis.html) Network now.
 
 [[bootstrap.sh]](https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh)
 
