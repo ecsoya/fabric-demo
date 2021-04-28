@@ -8,7 +8,8 @@ spring:
       locale-resolver: fixed
    fabric:
       chaincode:
-         identify: mycc
+         identify: commoncc
+         #identify: mycc
          name: Common Chaincode
          version: 1.0
       channel: mychannel

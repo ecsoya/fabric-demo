@@ -28,6 +28,12 @@ ii. Deploy chaincode
 
 `./network.sh deployCC -ccn mycc -ccv 1.0 -ccp ../src/chaincode/common -ccl go`
 
+iii. Deploy Java chaincode 
+
+`./network.sh deployCC -ccn commoncc -ccv 1.0 -ccp ../src/chaincode-java -ccl java`
+
+[Java Common Chaincode](https://github.com/ecsoya/spring-fabric-gateway/tree/master/spring-fabric-gateway-chaincode)
+
 ### 2. Generate Fabric Network Config files.
 
 Run `io.github.ecsoya.demo.network.NetworkGenerator` in `src/main/test` folder.

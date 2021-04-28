@@ -23,10 +23,9 @@ public class NetworkGenerator {
 
 				JsonObject json = new NetworkBuilder(domain).name("demo-fabric-network").clientOrg(clients[i])
 						.ordererOrg("orderer").orderers("orderer").peerOrgs(clients).peers("peer0")
-						.channels("mychannel").root(new File("/Users/Ecsoya/Git/fabric-test-network", "organizations"))
-						.url("Org1", "*", "49.232.22.181").url("Org2", "*", "49.232.22.181")
-						.url("orderer", "*", "49.232.22.181").port("Org1", "peer0", 7051).port("Org2", "peer0", 9051)
-						.build();
+						.channels("mychannel").root(new File(root, "fabric-test-network/organizations"))
+						.url("Org1", "*", "127.0.0.1").url("Org2", "*", "127.0.0.1").url("orderer", "*", "127.0.0.1")
+						.port("Org1", "peer0", 7051).port("Org2", "peer0", 9051).build();
 
 				Gson gson = new Gson();
 				String value = gson.toJson(json);
@@ -35,7 +34,7 @@ public class NetworkGenerator {
 				Object map = yaml.load(value);
 				String yvalue = yaml.dump(map);
 
-				File file = new File(root, "src/main/resources/network/connection-" + clients[i] + ".yml");
+				File file = new File(root, "src/main/resources/network/.bak/connection-" + clients[i] + ".yml");
 				if (!file.exists()) {
 					Files.write(file.toPath(), yvalue.getBytes(), StandardOpenOption.CREATE_NEW,
 							StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE);

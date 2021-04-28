@@ -18,7 +18,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.fabric.gateway.version>2.0.0</spring.fabric.gateway.version>
+		<spring.fabric.gateway.version>2.0.1-SNAPSHOT</spring.fabric.gateway.version>
 	</properties>
 
 
