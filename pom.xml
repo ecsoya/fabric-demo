@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.5</version>
+		<version>2.4.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -18,7 +18,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.fabric.gateway.version>2.0.0-SNAPSHOT</spring.fabric.gateway.version>
+		<spring.fabric.gateway.version>2.0.0</spring.fabric.gateway.version>
 	</properties>
 
 

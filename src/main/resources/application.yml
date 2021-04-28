@@ -22,7 +22,7 @@ spring:
          wallet:
             identity: admin
       network:
-         file: network/.bak/connection-org1.yaml
+         file: network/.bak/connection-org1.yml
          name: example-fabric
 # Fabric explorer
       explorer:
