@@ -37,6 +37,13 @@ and
 
 `connection-org2.yml`
 
+*QA: Why to using custom NetworkGenerator?*
+
+Yes, after build your network by using test-network script files, you will find these 2 files `connection-org1.yml` and `connection-org2.yml` under `organizations/peerOrganizations/org1.example.com` and `organizations/peerOrganizations/org2.example.com` folder.
+
+Firstly, these files does not contain the user identity (admin certificate...) to access wallet.
+Secondly, these files does not mapping the DNS to IP correctly.
+
 ### 3. Configure `application.yml`
 
 ```
