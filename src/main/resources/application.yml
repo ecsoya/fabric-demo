@@ -1,9 +1,9 @@
 server:
+   port: 8081
    servlet:
-      port: 8081
       context-path: /
 spring:
-   mvc:
+   web:
       locale: zh_CN
       locale-resolver: fixed
    fabric:

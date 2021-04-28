@@ -76,7 +76,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>fabric-demo</finalName>
+		<finalName>fabric</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
