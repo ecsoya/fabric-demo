@@ -29,6 +29,6 @@ spring:
       explorer:
          title: Fabric Explorer
 #         logo: img/logo.png
-         copyright: Ecsoya (jin.liu@soyatec.com)
-         hyperledger-explorer-url: http://www.hyperleder.org
+         copyright: Ecsoya(angryred@qq.com)
+         hyperledger-explorer-url: https://www.hyperledger.org/use/fabric
          path: /explorer

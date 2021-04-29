@@ -18,7 +18,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.fabric.gateway.version>2.0.1-SNAPSHOT</spring.fabric.gateway.version>
+		<spring.fabric.gateway.version>2.0.3-SNAPSHOT</spring.fabric.gateway.version>
 	</properties>
 
 
@@ -82,7 +82,22 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<layout>ZIP</layout>
 					<mainClass>io.github.ecsoya.demo.DemoApplication</mainClass>
+					<includes>
+						<include>
+							<groupId>io.github.ecsoya</groupId>
+							<artifactId>fabric-explorer-spring-boot-starter</artifactId>
+						</include>
+						<include>
+							<groupId>io.github.ecsoya</groupId>
+							<artifactId>fabric-gateway-spring-boot-starter</artifactId>
+						</include>
+						<include>
+							<groupId>io.github.ecsoya</groupId>
+							<artifactId>spring-fabric-gateway</artifactId>
+						</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>
