@@ -14,7 +14,7 @@ If you still use Fabric 1.4.x network, please check out branch 1.0.6.
 
 [在线演示](http://139.155.177.74:8081/)
 
-### 1. Build Fabric Network
+### 1. Build Fabric Network v2.x
 
 open Terminal and go to `test-network` folder.
 

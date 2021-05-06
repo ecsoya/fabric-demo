@@ -19,6 +19,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring.fabric.gateway.version>2.0.3-SNAPSHOT</spring.fabric.gateway.version>
+		<spring.ipfs.gateway.version>1.0.0-SNAPSHOT</spring.ipfs.gateway.version>
 	</properties>
 
 
@@ -26,8 +27,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-
 		</dependency>
+
+		<!-- IPFS Gateway -->
+		<dependency>
+			<groupId>com.ecsoya.ipfs</groupId>
+			<artifactId>spring-ipfs-gateway</artifactId>
+			<version>${spring.ipfs.gateway.version}</version>
+		</dependency>
+
+		<!-- Fabric Explorer -->
 		<dependency>
 			<groupId>io.github.ecsoya</groupId>
 			<artifactId>fabric-explorer-spring-boot-starter</artifactId>
