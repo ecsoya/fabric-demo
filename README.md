@@ -92,3 +92,6 @@ Run `DemoApplication`
 
 then open [http://localhost:8080/explorer](http://localhost:8080/explorer) to view the fabric explorer.
 
+### Gitee.com
+
+Clone to gitee.com
