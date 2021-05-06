@@ -90,33 +90,11 @@
 						</form>
 					</div>
 					<div class="col-sm-12">
-						<form class="form-inline">
-							<div class="input-group mb-2 mr-sm-2">
-								<div class="input-group-prepend">
-									<div class="input-group-text">类型</div>
-								</div>
-								<input type="text" class="form-control" id="name" name="name"
-									placeholder="输入名称">
-							</div>
-
-							<div class="input-group mb-2 mr-sm-2">
-								<div class="input-group-prepend">
-									<div class="input-group-text">所有人</div>
-								</div>
-								<input type="text" class="form-control" id="owner" name="owner"
-									placeholder="输入值">
-							</div>
-							<!-- <button type="button" class="btn btn-primary mb-2" id="add">添加</button> -->
-							<!-- <input type="text" id="file" name="file" class="form-control"
-								style="display: none" readonly></input> <span
-								class="input-group-addon fileinput-button button btn btn-info">
-								<span>上传</span> <input type="file"
-								onChange="uploadImg(this,800)" data-id="#image">
-							</span> -->
-							<input type="file" class="btn btn-primary mb-2"
-								onChange="uploadFile(this)" data-id="#image">
-							<button type="button" class="btn btn-info mb-2" id="search"
-								style="margin-left: 10px;">查找</button>
+						<form class="form-inline" id="uploadForm">
+							<input type="hidden" id="editId">
+							<input type="file" style="display: none"
+								onChange="doUploadFile(this)" id="uploadFile" >
+							<button type="button" class="btn btn-info mb-2" id="uploadBtn" onclick="upload()">上传</button> 
 						</form>
 					</div>
 				</div>
@@ -126,10 +104,11 @@
 							style="width: 100%" id="dataTable">
 							<thead>
 								<th width="5%">#</th>
-								<th width="15%">Key</th>
-								<th width="10%">Type</th>
-								<th width="40%">Value</th>
-								<th width="15%">历史记录</th>
+								<th width="15%">名称</th>
+								<th width="10%">ContentType</th>
+								<!-- <th width="40%">所有人</th> -->
+								<th width="15%">Hash</th>
+								<th width="15%">创建时间</th>
 								<th width="15%">操作</th>
 							</thead>
 						</table>

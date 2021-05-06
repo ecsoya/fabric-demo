@@ -36,13 +36,17 @@ public class FabricIpfsFileServiceImpl extends AbstractFabricService<FabricIpfsF
 	}
 
 	@Override
-	public FabricResponse upload(IpfsGateway gateway, MultipartFile file, String name, String owner) {
+	public FabricResponse upload(IpfsGateway gateway, MultipartFile file, String id, String name, String owner) {
 		if (gateway == null || file == null) {
 			return FabricResponse.fail("Invalid parameters");
 		}
 		try {
 			FabricIpfsFile fabricFile = new FabricIpfsFile();
-			fabricFile.setId(Long.toString(System.currentTimeMillis()));
+			if (id == null || id.equals("")) {
+				fabricFile.setId(Long.toString(System.currentTimeMillis()));
+			} else {
+				fabricFile.setId(id);
+			}
 			byte[] bytes = file.getBytes();
 			fabricFile.setContentType(file.getContentType());
 			if (ObjectUtils.isEmpty(name)) {
@@ -57,7 +61,11 @@ public class FabricIpfsFileServiceImpl extends AbstractFabricService<FabricIpfsF
 			fabricFile.setOwner(owner);
 			fabricFile.setCreateTime(new Date());
 			fabricFile.setLength(file.getSize());
-			return create(fabricFile);
+			if (id == null || id.equals("")) {
+				return create(fabricFile);
+			} else {
+				return update(fabricFile);
+			}
 		} catch (IpfsFileException e) {
 			return FabricResponse.fail("Upload file failed: " + e.getLocalizedMessage());
 		} catch (IOException e) {

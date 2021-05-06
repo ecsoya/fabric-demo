@@ -3,7 +3,7 @@ package io.github.ecsoya.demo.ipfs;
 import java.util.Date;
 
 import io.github.ecsoya.fabric.annotation.FabricJson;
-import io.github.ecsoya.fabric.bean.FabricIdentityObject;
+import io.github.ecsoya.fabric.bean.IFabricObject;
 
 /**
  * 
@@ -13,9 +13,13 @@ import io.github.ecsoya.fabric.bean.FabricIdentityObject;
  *
  */
 @FabricJson
-public class FabricIpfsFile extends FabricIdentityObject {
+public class FabricIpfsFile implements IFabricObject {
 
 	public static final String TYPE = "ipfs";
+
+	private String id;
+
+	protected String type = TYPE;
 
 	/**
 	 * The name of file
@@ -111,6 +115,16 @@ public class FabricIpfsFile extends FabricIdentityObject {
 	@Override
 	public String getType() {
 		return TYPE;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

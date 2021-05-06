@@ -64,59 +64,27 @@ const baseURL = $('#baseURL').val() + '/ipfs';
 									}
 								},
 								{
-									"name" : "key",
+									"name" : "Name",
 									"data" : function(row) {
-										return row.id;
+										return '<a href="/explorer/history?type=ipfs&key='+row.id+'" target="_blank">' + row.name + '</a>' ;
 									}
 								},
 								{
-									"name" : "type",
+									"name" : "ContentType",
 									"data" : function(row) {
-										return row.type;
+										return row.contentType;
 									}
 								},
 								{
-									"name" : "values",
+									"name" : "Hash",
 									"data" : function(row) {
-										var id = 'value_' + row.id + '_'
-												+ row.index;
-										var html = '<div>';
-										html += '<a data-toggle="collapse" href="#'
-												+ id
-												+ '" role="button" aria-expanded="false" aria-controls="'
-												+ id
-												+ '" data-toggle="tooltip" title="查看">查看</a>';
-										html += '	<div class="collapse multi-collapse" id="'
-												+ id + '">';
-										html += '  <div class="card card-body" style="overflow-y: auto; height:180px; width: 400px" >';
-										html += '<pre><code>'
-												+ FormatJSON(row.values)
-												+ '</code></pre>';
-										;
-										html += ' </div>';
-										html += '</div>';
-										html += '</div>';
-
-										return html;
+										return '<a href="'+ $('#gateway').val() +  row.hash+'">' + row.hash + '</a>' ;
 									}
 								},
 								{
-									"name" : "txid",
+									"name" : "CreateTime",
 									"data" : function(row) {
-										var html = '<form id="' + row.id + "-"
-												+ row.index + '" action="'
-												+ baseURL
-												+ '/explorer/history?key='
-												+ row.id + '" method="post">';
-										html += '<a href="javascript:;" onclick="document.getElementById(\''
-												+ row.id
-												+ "-"
-												+ row.index
-												+ '\').submit();" data-toggle="tooltip" title="查看历史记录">打开</a>';
-										html += '<input type="hidden" name="type" value="'
-												+ row.type + '"/>';
-										html += '</form>';
-										return html;
+										return format(row.createTime);
 									}
 								},
 								{
@@ -124,10 +92,8 @@ const baseURL = $('#baseURL').val() + '/ipfs';
 									"data" : function(row) {
 										var html = '';
 										html += '<div class="btn-group" role="group" aria-label="操作">';
-										html += '  <button type="button" class="btn btn-success btn-sm" onclick="toEdit(\''
-												+ row.id + '\')">编辑</button>';
-										html += '  <button type="button" class="btn btn-danger btn-sm" onclick="toDelete(\''
-												+ row.id + '\')">删除</button>';
+										html += '  <button type="button" class="btn btn-danger btn-sm" onclick="toEdit(\''
+												+ row.id + '\')">更新</button>';
 										html += '</div>';
 										return html;
 									}
@@ -153,16 +119,24 @@ const baseURL = $('#baseURL').val() + '/ipfs';
 
 function toEdit(id) {
 	$('#editId').val(id);
-	$('#editModal').modal('show');
+	$("#uploadFile").click(); 
 }
-function uploadFile(obj) {
+
+function upload() {
+	$('#editId').val('');
+	$("#uploadFile").click(); 
+}
+
+function doUploadFile(obj) {
 	toastInfo('文件上传中……');	
 	var formData = new FormData();
     var files = obj.files[0];
+    formData.append("id", $('#editId').val());
     formData.append("address", $("#address").val());
     formData.append("gateway", $("#gateway").val());
-    formData.append("name", $("#name").val());
-    formData.append("owner", $("#owner").val());
+    //formData.append("name", $("#name").val());
+    //formData.append("owner", $("#owner").val());
+    formData.append("owner", 'AngryRED');
     formData.append("file", files);
     $.ajax({
         url: baseURL + "/add",
@@ -173,16 +147,38 @@ function uploadFile(obj) {
         dataType: 'json',
         success:function (res) {
         	if(res.status == 1) {
-        	toastSuccess("上传成功")
-			refreshDataTable(true);
+        		toastSuccess("上传成功")
+				refreshDataTable(true);
 			} else {
 				toastError('上传失败: ' + res.errorMsg);
 			}
+			$('#uploadForm')[0].reset();
         },error:function (res) {
         	toastError('上传失败');
         }
     });
 }
+
+function toDelete(id, type) {
+	toastInfo('拼命删除中……');
+	$.ajax({
+		url : baseURL + "/remove",
+		data : {
+			id : id,
+			type : type
+		}
+	}).then(function success(res) {
+		toastSuccess('删除成功');
+
+		setTimeout(function() {
+			// refreshDataTable(true);
+			window.location = baseURL;
+		}, 2000);
+	}, function fail(data, status) {
+		toastError('删除失败');
+	});
+}
+
 
 function toastSuccess(msg) {
 	$.toast().reset('all');
@@ -223,4 +219,30 @@ function toastInfo(msg) {
 		hideAfter : false,
 		showClose : false
 	})
+}
+
+function strftime(fmt, str) {
+	var date = new Date(str);
+    if (fmt == undefined){
+        fmt = 'yyyy-MM-dd hh:mm:ss.S';
+    }
+    var o = {
+        "M+" : date.getMonth()+1,                 // 月份
+        "d+" : date.getDate(),                    // 日
+        "h+" : date.getHours(),                   // 小时
+        "m+" : date.getMinutes(),                 // 分
+        "s+" : date.getSeconds(),                 // 秒
+        "q+" : Math.floor((date.getMonth()+3)/3), // 季度
+        "S"  : date.getMilliseconds()             // 毫秒
+    };
+    if(/(y+)/.test(fmt))
+        fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));
+    for(var k in o)
+        if(new RegExp("("+ k +")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+    return fmt;
+};
+
+function format(date) {
+	return strftime('yyyy-MM-dd hh:mm:ss.S', date);
 }

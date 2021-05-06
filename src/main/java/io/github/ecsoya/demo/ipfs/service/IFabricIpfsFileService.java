@@ -20,5 +20,5 @@ public interface IFabricIpfsFileService extends IFabricService<FabricIpfsFile>, 
 	 * @param owner
 	 * @return
 	 */
-	FabricResponse upload(IpfsGateway gateway, MultipartFile file, String name, String owner);
+	FabricResponse upload(IpfsGateway gateway, MultipartFile file, String id, String name, String owner);
 }

@@ -51,13 +51,20 @@ public class FabricIpfsController {
 			query.equals("values", json);
 		}
 		query.setType(FabricIpfsFile.TYPE);
-		return fabricService.pagination(query);
+		FabricPagination<FabricIpfsFile> pagination = fabricService.pagination(query);
+		return pagination;
 	}
 
 	@PostMapping("/add")
 	@ResponseBody
-	public FabricResponse add(IpfsGateway gateway, MultipartFile file, String name, String owner) {
-		return fabricService.upload(gateway, file, name, owner);
+	public FabricResponse add(IpfsGateway gateway, MultipartFile file, String id, String name, String owner) {
+		return fabricService.upload(gateway, file, id, name, owner);
+	}
+
+	@GetMapping("/remove")
+	@ResponseBody
+	public FabricResponse remove(FabricIpfsFile object) {
+		return fabricService.delete(object.getId());
 	}
 
 }
